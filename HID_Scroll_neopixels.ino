@@ -1,27 +1,15 @@
-/*
-  Copyright (c) 2014-2015 NicoHood
-  See the readme for credit to other people.
+#include <Adafruit_NeoPixel.h>  //neopixel library
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(8, 10, NEO_GRB + NEO_KHZ800); // neopixel init
 
-  System example
-  Press a button to put pc into sleep/shut it down or wake it up again.
+#include "HID-Project.h" // HID library by NicoHood
+#include <Encoder.h> //Encoder library
+Encoder myEnc(2, 3); //Encoder init
 
-  You may also use SingleSystem to use a single report.
-
-  See HID Project documentation for more Consumer keys.
-  https://github.com/NicoHood/HID/wiki/System-API
-*/
-#include <Adafruit_NeoPixel.h>
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(8, 10, NEO_GRB + NEO_KHZ800);
-
-#include "HID-Project.h"
-#include <Encoder.h>
-Encoder myEnc(2, 3);
-
-const int pinLed1 = 5;
+const int pinLed1 = 5; 
 const int pinLed2 = 6;
-const int pinEnabler = 7;
-const int pinEncoder = 8;
-int control = 0;
+const int pinEnabler = 7; // pin for enabler. If this reads low the whole script goes to sleep
+const int pinEncoder = 8; // pin for the encoder
+int control = 0; // flag
 const int await = 15; // wait time for animation on encoder
 
 long oldPosition  = 0;
@@ -176,14 +164,14 @@ void colorWipe(uint32_t c, uint8_t wait) {
     delay(wait);
   }
 }
-void revColorWipe(uint32_t c, uint8_t wait) {
+void revColorWipe(uint32_t c, uint8_t wait) { //Color wipe, just reverse
   for(int i=strip.numPixels(); i > 0 ; i--) {
     strip.setPixelColor(i, c);
     strip.show();
     delay(wait);
   }
 }
-uint32_t Wheel(byte WheelPos) {
+uint32_t Wheel(byte WheelPos) { // Color Wheel from adafruit neopixel example
   WheelPos = 255 - WheelPos;
   if(WheelPos < 85) {
     return strip.Color(255 - WheelPos * 3, 0, WheelPos * 3);
@@ -195,7 +183,7 @@ uint32_t Wheel(byte WheelPos) {
   WheelPos -= 170;
   return strip.Color(WheelPos * 3, 255 - WheelPos * 3, 0);
 }
-int limit(int var, int limit){
+int limit(int var, int limit){ // calc for ring LEDs. This enables value over the amount of LEDs to "roll over" 
   while (var>limit){
     var=var-limit-1;
   }
