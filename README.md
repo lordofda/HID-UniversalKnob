@@ -8,6 +8,7 @@ Upload like any other arduino sketch
 Use:
 3 things are needed, a switch, a button and a rotary encoder. The switch to switch controls running of the program, button changes functions and encoder serves as multi-use knob
 There are 4 functions included as of now:
+
 1:Scroll
 2:Tab change (for Firefox)
 3:Photoshop tool (increasing and decreasing the brush size)
