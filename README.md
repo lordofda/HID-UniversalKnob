@@ -17,4 +17,4 @@ There are 4 functions included as of now:
 The neopixels are for decoration
 Feel free to modify the code for your needs :)
 
-The images provided are: The schematic, breadboard and pseudo-PCB image provided by fritzing software (http://fritzing.org/)
+The schematic: [/HIDKnob_schem.png?raw=true "Schematic"], breadboard and pseudo-PCB image provided by fritzing software (http://fritzing.org/)
